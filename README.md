@@ -26,7 +26,8 @@ $$ C_{down} = \frac{(Q_{up} \cdot C_{up}) + \sum_{i=1}^{n} [Q_i \cdot C_i \cdot 
 
 where,
 
-$\eta_i$: Treatment efficiency of factory $i$ (the decision variable).
+$\eta_i$: Treatment efficiency of factory $i$ (the decision variable),
+
 $Q_i, C_i$: Constant discharge flow and concentration from factory $i$.
 
 
