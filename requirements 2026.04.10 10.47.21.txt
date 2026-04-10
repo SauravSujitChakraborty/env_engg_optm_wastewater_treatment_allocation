@@ -1,0 +1,10 @@
+NumPy (numpy): * Used for generating the Log-Normal distribution of river flows. 
+
+​Used for vectorized mathematics and calculating the 95th percentile (Value-at-Risk) during the Monte Carlo simulation.
+
+​SciPy (scipy.optimize): 
+
+​Specifically uses the minimize function with the SLSQP (Sequential Least Squares Programming) algorithm.
+
+​This handles the non-linear objective function and the inequality constraints simultaneously.
+
