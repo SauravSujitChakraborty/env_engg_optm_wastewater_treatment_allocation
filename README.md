@@ -46,7 +46,12 @@ $P(C_{down} > C_{limit}) \leq 0.05$
 
 ==> To solve this, the algorithm performs a Monte Carlo Simulation of 1,000 scenarios at every iteration of the solver to find the 95th percentile of $C_{down}$.
 
-5.Implementation Details
+5. Asymptotic Economic Cost Function
+Removal costs grow exponentially as efficiency approaches 100%. This is modeled using an asymptotic penalty to simulate the high marginal cost of removing trace pollutants:
+
+$$ Z = \sum_{i=1}^{n} k_i \cdot \left( \frac{\eta_i}{1.001 - \eta_i} \right) $$
+
+• Implementation Details
 
 ==> Algorithm: Sequential Least Squares Programming (SLSQP).
 
@@ -54,8 +59,20 @@ $P(C_{down} > C_{limit}) \leq 0.05$
 
 ==> Optimization Framework: scipy.optimize.minimize.
 
-• Key Results
+• The Simulation Loop:
 
-==> Robustness: The model successfully found a treatment strategy that remains valid even during low-flow (drought) scenarios.
+Monte Carlo Generation: 1,000 random river flow scenarios are generated per iteration.
 
-==> Efficiency: By distributing the load based on $k_i$(cost coefficients), the solver achieved a significant reduction in total expenditure compared to a "uniform treatment" mandate
+Scenario Calculation: The mass balance is computed for every random scenario.
+
+Tail Risk Assessment: The 95th percentile of the concentration is compared against the limit.
+
+Non-Linear Solver: The SLSQP algorithm iterates on $\eta$ values to find the global minimum cost that respects this risk threshold.
+
+• Results & Technical Observations
+
+==> Deterministic vs. Stochastic: A deterministic model might suggest a low-cost solution that fails during the first minor drought. This robust model finds the "Safety-Optimized" cost that survives volatility.
+
+==> Infeasibility Risk: During testing, we observed that high flow volatility ($\sigma$) can lead to Infeasibility, proving that at a certain level of environmental risk, no amount of treatment can guarantee 100% compliance—a vital insight for real-world policy making.
+
+
