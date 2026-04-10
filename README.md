@@ -15,7 +15,7 @@ Project Overview
 ​Unlike standard models that use a fixed flow rate, this project treats upstream river discharge as a random variable. We use a Log-Normal Distribution because physical flows cannot be negative and often exhibit "fat-tail" behavior during floods or droughts:
 
 
-$ \ln(Q_{up}) \sim \mathcal{N}(\mu, \sigma^2) $
+$\ln(Q_{up}) \sim \mathcal{N}(\mu, \sigma^2)$
 
 2. The Mass Balance Equation
 The downstream concentration $(C_{down})$ is calculated using a mass-balance summation. This accounts for the upstream pollutant load and the treated discharge from n industrial sources:
